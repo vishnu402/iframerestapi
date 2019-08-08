@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment</title>
+	<style>
+    </style> 
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+<script>
+		$(document).ready(function() {
+		   $.ajax({
+        url: "http://localhost:8080/Sample/api/getdata"
+    }).then(function(data) {
+		debugger;
+       $.each(data, function(idx, value){	
+       var iframe = document.createElement('iframe');
+       var html = '<body>'+value.content+'</body>';
+       iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(html);
+	   iframe.height = value.content.length + "px";
+       document.body.appendChild(iframe);
+       var linebreak = document.createElement('br');
+       document.body.appendChild(linebreak);
+        });
+    });	
+});
+</script>
+</body>
+</html>
